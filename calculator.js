@@ -11,3 +11,5 @@
 // when the equals is clicked, loop through the array parsing the first element and every second element from there on in to a number varaible
 // the loop also checks the operators and perfoms the relative operation for the two numbers on either side of it on the array.
 // the answer is then displaed on the screen
+
+console.log("Hello, this is my calculator.js file");
