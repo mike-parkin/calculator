@@ -3,6 +3,15 @@ body {
     text-align: center;
 }
 
+@font-face {
+    font-family: 'digital-7regular';
+    src: url('./fonts/digital-7.ttf') format('ttf');
+    src: url('./fonts/digital-7-webfont.woff2') format('woff2');
+    src: url('./fonts/digital-7-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 #calc-container {
     background-color: greenyellow;
     border: 2px solid;
@@ -23,6 +32,8 @@ body {
     width: 80%;
     background-color: rgba(211, 210, 178, 0.61);
     text-align: right;
+    font-size: 2em;
+    font-family: "digital-7regular", sans-serif;
 }
 
 .row {
