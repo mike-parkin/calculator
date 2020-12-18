@@ -15,11 +15,12 @@
 console.log("Hello, this is my calculator.js file");
 
 var temp = '';
-var entry = [];
+var equationArr = [];
 var total = 0;
 
-document.getElementById('AC').addEventListener('click', function() {clearEntries('AC')})
-document.getElementById('CE').addEventListener('click', function() {clearEntries('CE')})
+
+document.getElementById('AC').addEventListener('click', function() {clearEntries('AC')});
+document.getElementById('CE').addEventListener('click', function() {clearEntries('CE')});
 document.getElementById('0').addEventListener('click', function() {addEntry('0')});
 document.getElementById('1').addEventListener('click', function() {addEntry('1')});
 document.getElementById('2').addEventListener('click', function() {addEntry('2')});
@@ -31,17 +32,55 @@ document.getElementById('7').addEventListener('click', function() {addEntry('7')
 document.getElementById('8').addEventListener('click', function() {addEntry('8')});
 document.getElementById('9').addEventListener('click', function() {addEntry('9')});
 document.getElementById('decimal').addEventListener('click', function() {addEntry('.')});
+document.getElementById('plus').addEventListener('click', function() {addEntry('+')});
+document.getElementById('divide').addEventListener('click', function() {addEntry('/')});
+document.getElementById('subtract').addEventListener('click', function() {addEntry('-')});
+document.getElementById('x').addEventListener('click', function() {addEntry('*')});
+document.getElementById('equals').addEventListener('click', function() {displayAnswer()})
+
 
 function addEntry(str) {
-    temp += str;
-    console.log(temp);
+    if (str === '+' || str === '-' || str === '/' || str === '*') {
+        if (document.getElementById('calc-display').value === '') {
+            return;
+        } else {
+            equationArr.push(temp)
+            temp = str
+            equationArr.push(temp)
+            temp= ''
+            console.log(equationArr)
+        }
+    } else {
+        temp += str;
+        document.getElementById('calc-display').value = temp;
+        // console.log(temp);
+    }    
 }
 
 function clearEntries(str) {
     if (str === 'AC') {
         temp = ''
-        entry = []
+        equationArr = []
+        document.getElementById('calc-display').value = ''
     } else if (str === 'CE') {
         temp = ''
+        document.getElementById('calc-display').value = ''
     }
+}
+
+function displayAnswer () {
+    equationArr.push(temp)
+    let answer = Number(equationArr[0]);
+    for (let i = 1; i < equationArr.length; i++) {
+        nextNum = Number(equationArr[i+1])
+        let operator = equationArr[i];
+
+        if (operator === '+') {answer += nextNum}
+        else if (operator === '-') {answer -= nextNum}
+        else if (operator === '/') {answer /= nextNum}
+        else if (operator === '*') {answer *= nextNum}
+    }
+    temp = ''
+    equationArr = []
+    document.getElementById('calc-display').value = answer
 }
